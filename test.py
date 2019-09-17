@@ -22,7 +22,7 @@ class TestAcceptanceStripe(unittest.TestCase):
         self.assertTrue(hasattr(res, 'group'), msg="You didn't define the Stripe key.")
 
     def test_acceptance_stripe_script_has_been_inserted(self):
-        """Check if Stripe script was inserted."""
+        """Check if Stripe script was inserted.123"""
         pattern = re.compile(r'<script src="https://js.stripe.com/v3"></script>',
                              re.I | re.M)
         res = re.search(pattern, self.dom_str)
