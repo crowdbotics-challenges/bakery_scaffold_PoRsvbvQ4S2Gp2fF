@@ -76,7 +76,7 @@ class AssessmentTestCases(unittest.TestCase):
 
         options = selenium.webdriver.ChromeOptions()
         options.headless = True
-        options.binary_location = '/usr/lib/chromium'
+        options.setBinary('/usr/lib/chromium');
         options.add_argument("--window-size=%s" % WINDOW_SIZE)
         options.add_argument("--disable-gpu")
 
