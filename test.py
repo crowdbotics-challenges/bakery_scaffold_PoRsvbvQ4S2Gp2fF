@@ -17,12 +17,12 @@ class TestAcceptanceStripe(unittest.TestCase):
 
     def test_acceptance_stripe_public_key_has_been_set(self):
         """Check if Stripe key was defined."""
-        pattern = re.compile(r"Stripe\('pk_test_\w{24}'\);", re.I | re.M)
+        pattern = re.compile(r"Stripe\('pk_test_\w+'\);", re.I | re.M)
         res = re.search(pattern, self.dom_str)
         self.assertTrue(hasattr(res, 'group'), msg="You didn't define the Stripe key.")
 
     def test_acceptance_stripe_script_has_been_inserted(self):
-        """Check if Stripe script was inserted.123"""
+        """Check if Stripe script was inserted."""
         pattern = re.compile(r'<script src="https://js.stripe.com/v3"></script>',
                              re.I | re.M)
         res = re.search(pattern, self.dom_str)
@@ -66,13 +66,14 @@ class TestAcceptanceStripe(unittest.TestCase):
         res = re.search(pattern, self.dom_str)
         self.assertTrue(hasattr(res, 'group'), msg="You didn't define a cancel URL.")
 
+
 class AssessmentTestCases(unittest.TestCase):
     def setUp(self):
+
         with open("order.html", "r") as file_descriptor:
             self.dom_str = file_descriptor.read()
 
         CHROMEDRIVER_PATH = '/usr/local/bin/chromedriver'
-        print(os.listdir(CHROMEDRIVER_PATH))
         WINDOW_SIZE = "1920,1080"
 
         options = selenium.webdriver.ChromeOptions()
@@ -140,5 +141,17 @@ class AssessmentTestCases(unittest.TestCase):
     def tearDown(self):
         self.driver.close()
 
-if __name__ == '__main__':
+
+    
+
+class TestSubmission(unittest.TestCase):
+    def __init__(self, *args, **kwargs):
+        super(TestSubmission, self).__init__(*args, **kwargs)
+        with open('order.html', 'r') as file_descriptor:
+            self.dom_str = file_descriptor.read()
+
+    
+
+
+if __name__ == "__main__":
     unittest.main()
