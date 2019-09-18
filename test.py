@@ -72,6 +72,7 @@ class AssessmentTestCases(unittest.TestCase):
             self.dom_str = file_descriptor.read()
 
         CHROMEDRIVER_PATH = '/usr/local/bin/chromedriver'
+        print(os.listdir(CHROMEDRIVER_PATH))
         WINDOW_SIZE = "1920,1080"
 
         options = selenium.webdriver.ChromeOptions()
